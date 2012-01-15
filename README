@@ -4,7 +4,7 @@ Setup: Rename key.php.dist to key.php, and refresh its value with a new randomly
 
 Base
 ====
-input.php: takes GET arguments key, charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt. If any users were added, it will run scripts.php
+input.php: takes GET arguments key, charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt.
 
 scripts.php: parses characters.txt and runs specified scripts.
 
