@@ -1,4 +1,5 @@
 <?php
+# pull standings
 $standings = array("agents"=>array(),"NPCCorporations"=>array(),"factions"=>array());
 foreach($chars as $char) {
   $url = "http://api.eve-online.com/char/Standings.xml.aspx?apiKey=".$char["apiKey"]."&characterID=".$char["characterID"]."&userID=".$char["userID"];
@@ -16,7 +17,14 @@ foreach($chars as $char) {
     }
   }
 }
+# fill in the zeroes...
+foreach($standings as $typeName=>$fromNames)
+  foreach($standings[$typeName] as $fromName=>$from)
+    foreach($chars as $char)
+      if (!isset($standings[$typeName][$fromName][$char["name"]]))
+        $standings[$typeName][$fromName][$char["name"]] = 0;
 
+# parse
 $f = fopen("standings.csv","w");
 $charNames = "";
 foreach($chars as $char) {

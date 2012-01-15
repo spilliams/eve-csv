@@ -30,6 +30,11 @@ foreach ($chars as $char) {
     $skills[$skillName][$char["name"]] = $row["level"]."";
   }
 }
+# fill in the zeroes...
+foreach($skills as $skillName=>$skillChars)
+  foreach($chars as $char)
+    if (!isset($skills[$skillName][$char["name"]]))
+      $skills[$skillName][$char["name"]]=0;
 
 //print_r($skills);exit();
 
