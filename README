@@ -1,6 +1,6 @@
 A simple scraper/cacher for EVE Online data. It was created to pull skill and standing data for several characters and cache them locally in csv format where Google Docs can find them.
 
-To Install: Go get an md5 and with it encrypt the word "correct". Put that in correct.txt (in place of the one already there). Specific encrypt function may be found in functions.php.
+Setup: Rename key.php.dist to key.php, and refresh its value with a new randomly-generated md5.
 
 Base
 ====
@@ -8,9 +8,7 @@ input.php: takes GET arguments key, charNames, apiKeys and userNames, each of wh
 
 scripts.php: parses characters.txt and runs specified scripts.
 
-correct.txt: This file contains the string "correct" encrypted with an md5. Unless the user provides GET argument key in the call to input.php (or scripts.php), and that key can decrypt this string, the scripts won't run.
-
-characters.txt: This file contains character API data, encrypted with the same key used to encrypt correct.txt.
+characters.txt: This file contains character API data, encrypted by a key.
 
 Scripts
 =======

@@ -1,3 +1,5 @@
 .DS_Store
 characters.txt
+key.php
+*.tmproj
 *.csv

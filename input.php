@@ -4,12 +4,11 @@
 
 if (!isset($_GET['key'])) exit();
 $key = $_GET['key'];
-$encrypted = file_get_contents("correct.txt",'r');
-$decrypted = decrypt($encrypted,$key);
-if ($decrypted != "correct") exit();
+require_once "key.php";
+if ($key != $correctKey) exit();
 
 # load charsIn
-$charsIn = explode("\n",file_get_contents("characters.php"));
+$charsIn = explode("\n",file_get_contents("characters.txt"));
 for($i=1;$i<count($charsIn)-1;$i++){
   $charsIn[$i]=explode(",",decrypt($charsIn[$i],$key));
 }

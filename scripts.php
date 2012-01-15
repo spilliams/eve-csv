@@ -1,4 +1,4 @@
-<?php include "functions.php";
+<?php if (!function_exists("encrypt")) include "functions.php";
 # this file is invoked when input is called with new characters
 # it may also be called via cronjob or command line
 
@@ -6,9 +6,8 @@ if (!isset($key)) {
   if (!isset($_GET['key'])) exit();
   $key = $_GET['key'];
 }
-$encrypted = file_get_contents("correct.txt",'r');
-$decrypted = decrypt($encrypted,$key);
-if ($decrypted != "correct") exit();
+require_once "key.php";
+if ($key != $correctKey) exit();
 
 # preliminary
 $chars = explode("\n",file_get_contents("characters.txt"));
