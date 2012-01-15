@@ -41,6 +41,15 @@ foreach($skills as $skillName=>$skillChars)
     if (!isset($skills[$skillName][$char["name"]]))
       $skills[$skillName][$char["name"]]=0;
 echo "done\n";
+# fill in skills nobody has
+echo "filling in empty skills...";
+$empty = array();
+foreach($chars as $char)
+  $empty[$char["name"]] = 0;
+foreach($lookup as $typeID=>$typeName)
+  if (!isset($skills[$typeName]))
+    $skills[$typeName] = $empty;
+echo "done\n";
 
 //print_r($skills);exit();
 
