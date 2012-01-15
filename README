@@ -1,0 +1,12 @@
+A simple scraper/cacher for EVE Online data.
+
+Base
+====
+input.php: takes GET arguments charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt. If any users were added, it will run scripts.php
+
+scripts.php: parses characters.txt and runs specified scripts. Currently only runs skills.php and standings.php
+
+Scripts
+=======
+skills.php: pulls the skill tree, as well as character sheets of all users in characters.txt, and generates csv.
+standings.php: pulls character standings, generates csv.
