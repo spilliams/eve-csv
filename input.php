@@ -1,11 +1,17 @@
-<?php
+<?php include "functions.php";
 # take parameters, match with characters.txt
 # any characters in parameters not in file get added to file
 
+if (!isset($_GET['key'])) exit();
+$key = $_GET['key'];
+$encrypted = file_get_contents("correct.txt",'r');
+$decrypted = decrypt($encrypted,$key);
+if ($decrypted != "correct") exit();
+
 # load charsIn
-$charsIn = explode("\n",file_get_contents("characters.txt"));
-for($i=0;$i<count($charsIn);$i++){
-  $charsIn[$i]=explode(",",$charsIn[$i]);
+$charsIn = explode("\n",file_get_contents("characters.php"));
+for($i=1;$i<count($charsIn)-1;$i++){
+  $charsIn[$i]=explode(",",decrypt($charsIn[$i],$key));
 }
 
 # load charsOut
@@ -31,7 +37,7 @@ for($i=0;$i<count($rows->row)-1;$i++) {
     }
   }
   if (!$found) {
-    fwrite(fopen("characters.txt",'a'),$name.",".$userID.",".$apiKey.",".$characterID."\n");
+    fwrite(fopen("characters.txt",'a'),encrypt($name.",".$userID.",".$apiKey.",".$characterID,$key)."\n");
     echo "added ".$name."\n";
     $changed = true;
   }
@@ -40,4 +46,6 @@ for($i=0;$i<count($rows->row)-1;$i++) {
 # rerun scripts
 if ($changed) include "scripts.php";
 else echo "nothing added";
+
+
 ?>

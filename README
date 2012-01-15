@@ -1,10 +1,16 @@
 A simple scraper/cacher for EVE Online data.
 
+To Install: Go get an md5, encrypt the word "correct", and put that in correct.txt (in place of the one already there).
+
 Base
 ====
-input.php: takes GET arguments charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt. If any users were added, it will run scripts.php
+input.php: takes GET arguments key, charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt. If any users were added, it will run scripts.php
 
 scripts.php: parses characters.txt and runs specified scripts. Currently only runs skills.php and standings.php
+
+correct.txt: This file contains the string "correct" encrypted with an md5. Unless the user provides GET argument key in the call to input.php (or scripts.php), and that key can decrypt this string, the scripts won't run.
+
+characters.txt: This file contains character API data, encrypted with the same key used to encrypt correct.txt.
 
 Scripts
 =======
