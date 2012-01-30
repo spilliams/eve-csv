@@ -20,18 +20,24 @@ echo "done\n";
 //print_r($lookup);exit();
 
 # pull characters' skills
-echo "pulling characters' skills...";
+echo "pulling characters' skills...\n";
 $skills = array();
 foreach ($chars as $char) {
   $url = "http://api.eve-online.com/char/CharacterSheet.xml.aspx?apiKey=".$char["apiKey"]."&characterID=".$char["characterID"]."&userID=".$char["userID"];
-  //echo "fetching character info for ".$char["name"]." from url ".$url."\n";
+  echo "fetching character info for ".$char["name"]." from url ".$url."\n";
   $xml = simplexml_load_file($url);
   $charSkills = $xml->result->rowset;
+  $hasSkills = false;
   for ($i=0;$i<count($charSkills->row);$i++) {
+    $hasSkills = true;
     $row = $charSkills->row[$i];
     $skillName = $lookup[$row["typeID"].""];
     if (!isset($skills[$skillName])) $skills[$skillName] = array();
     $skills[$skillName][$char["name"]] = $row["level"]."";
+  }
+  if (!$hasSkills) {
+    echo "uh oh, character has no skills! printing the source:\n";
+    echo $xml;
   }
 }
 echo "done\nfilling in the zeroes...";
