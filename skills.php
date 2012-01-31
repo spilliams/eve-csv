@@ -1,30 +1,31 @@
 <?php
-echo "SKILLS SCRIPT\n";
+$f = fopen("skills.out","w");
+fwrite($f,"SKILLS SCRIPT\n");
 # load skill tree into lookup table
-echo "loading skills tree into lookup table...";
+fwrite($f,"loading skills tree into lookup table...");
 $url = "http://api.eve-online.com/eve/SkillTree.xml.aspx";
 $xml = simplexml_load_file($url);
 $lookup = array();
 $categories = $xml->result->rowset;
-//echo "categories count: ".count($categories->row)."\n";
+//fwrite($f,"categories count: ".count($categories->row)."\n");
 for($i=0;$i<count($categories->row);$i++) {
   $category = $categories->row[$i]->rowset;
   for ($j=0;$j<count($category->row);$j++) {
     $skill = $category->row[$j];
-    //echo "name: ".$skill["typeName"].", ID: ".$skill["typeID"]."\n";
+    //fwrite($f,"name: ".$skill["typeName"].", ID: ".$skill["typeID"]."\n");
     $lookup[$skill["typeID"].""] = $skill["typeName"]."";
   }
 }
-echo "done\n";
+fwrite($f,"done\n");
 
 //print_r($lookup);exit();
 
 # pull characters' skills
-echo "pulling characters' skills...\n";
+fwrite($f,"pulling characters' skills...\n");
 $skills = array();
 foreach ($chars as $char) {
   $url = "http://api.eve-online.com/char/CharacterSheet.xml.aspx?apiKey=".$char["apiKey"]."&characterID=".$char["characterID"]."&userID=".$char["userID"];
-  echo "fetching character info for ".$char["name"]." from url ".$url."\n";
+  fwrite($f,"fetching character info for ".$char["name"]." from url ".$url."\n");
   $xml = simplexml_load_file($url);
   $charSkills = $xml->result->rowset;
   $hasSkills = false;
@@ -36,31 +37,31 @@ foreach ($chars as $char) {
     $skills[$skillName][$char["name"]] = $row["level"]."";
   }
   if (!$hasSkills) {
-    echo "uh oh, character has no skills! printing the source:\n";
-    echo $xml;
+    fwrite($f,"uh oh, character has no skills! printing the source:\n");
+    fwrite($f,$xml);
   }
 }
-echo "done\nfilling in the zeroes...";
+fwrite($f,"done\nfilling in the zeroes...");
 # fill in the zeroes...
 foreach($skills as $skillName=>$skillChars)
   foreach($chars as $char)
     if (!isset($skills[$skillName][$char["name"]]))
       $skills[$skillName][$char["name"]]=0;
-echo "done\n";
+fwrite($f,"done\n");
 # fill in skills nobody has
-echo "filling in empty skills...";
+fwrite($f,"filling in empty skills...");
 $empty = array();
 foreach($chars as $char)
   $empty[$char["name"]] = 0;
 foreach($lookup as $typeID=>$typeName)
   if (!isset($skills[$typeName]))
     $skills[$typeName] = $empty;
-echo "done\n";
+fwrite($f,"done\n");
 
 //print_r($skills);exit();
 
 # open up a csv file, write to it
-echo "writing to csv...";
+fwrite($f,"writing to csv...");
 $file = fopen("skills.csv",'w');
 $charNames = "";
 foreach($chars as $char) {
@@ -76,5 +77,5 @@ foreach ($skills as $k=>$v) {
 }
 
 fclose($file);
-echo "done\n";
+fwrite($f,"done\n");
 ?>
