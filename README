@@ -1,16 +1,1 @@
-A simple scraper/cacher for EVE Online data. It was created to pull skill and standing data for several characters and cache them locally in csv format where Google Docs can find them.
-
-Setup: Rename key.php.dist to key.php, and refresh its value with a new randomly-generated md5.
-
-Base
-====
-input.php: takes GET arguments key, charNames, apiKeys and userNames, each of which should be a comma-delimited list. It will look up userIDs, then add any new users to characters.txt.
-
-scripts.php: parses characters.txt and runs specified scripts.
-
-characters.txt: This file contains character API data, encrypted by a key.
-
-Scripts
-=======
-skills.php: pulls the skill tree, as well as character sheets of all users in characters.txt, and generates csv.
-standings.php: pulls character standings, generates csv.
+Not sure yet the direction I want to take this app. But it'll be EVE-related, and use https://github.com/sinisterchipmunk/eve
