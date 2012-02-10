@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.1.2'
 
-gem 'eve'
+gem 'eve', :git => "git://github.com/sinisterchipmunk/eve.git"
 
 gem 'sqlite3'
 
