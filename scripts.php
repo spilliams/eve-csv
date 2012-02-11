@@ -19,7 +19,7 @@ if ($key != $correctKey) {
 echo "loading characters.txt...\n";
 $chars = explode("\n",file_get_contents("characters.txt"));
 unset($chars[count($chars)-1]);
-for($i=0;$i<count($chars);$i++) {
+for($i=0;$i<count($chars)-1;$i++) {
   $char = explode(",",decrypt($chars[$i],$key));
   $chars[$i] = array("name"=>$char[0],"userID"=>$char[1],"apiKey"=>$char[2],"characterID"=>$char[3]);
   echo "  ".$chars[$i]["name"]."\n";
