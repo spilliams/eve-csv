@@ -7,9 +7,4 @@ class ApplicationController < ActionController::Base
     @api = Eve::API.new
     @api = current_user.api unless current_user.nil?
   end
-  
-  # GET /
-  def index
-    
-  end
 end
