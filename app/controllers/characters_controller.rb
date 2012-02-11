@@ -7,6 +7,7 @@ class CharactersController < ApplicationController
   # POST /users/1/characters
   # POST /users/1/characters.json
   def bulk_create
+    characters = []
     ok = true
     Character.transaction do
       i=0
@@ -16,17 +17,23 @@ class CharactersController < ApplicationController
           c.name = params[:name][i]
           c.character_id = params[:character_id][i]
           ok = false unless c.save
+          characters << c
         end
         i=i+1
       end
     end
+    
+    default = Character.where(:character_id => params[:default]).first
+    default = characters.first unless default # user didn't select a default
+    current_user.character_id = default.id
+    current_user.save
     
     if ok
       respond_to do |format|
         format.html { redirect_to user_characters_path, notice: 'Characters successfully imported.' }
       end
     else
-      redirect_to user_characters_path(current_user), :alert => "There was an error importing characters"
+      redirect_to user_characters_path(current_user), :alert => "There was an error importing some or all of the characters."
     end
   end
   

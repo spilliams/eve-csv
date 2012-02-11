@@ -28,6 +28,12 @@
     <%= f.label "EVE API Key" %><br />
     <%= f.text_field :api_key %>
   </div>
+  <% if @user.characters %>
+  <div class="field">
+    <%= f.label "Default character" %><br>
+    <%= f.select :character_id, @user.characters.collect {|c| [c.name, c.id]} %>
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

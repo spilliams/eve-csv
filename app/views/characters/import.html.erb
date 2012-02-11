@@ -1,10 +1,11 @@
-<h1>Listing characters</h1>
+<h1>Listing importable characters</h1>
 <%= form_tag bulk_create_user_characters_path(current_user) do %>
   <table>
     <tr>
       <th>Name</th>
       <th>Api</th>
       <th>Import?</th>
+      <th>Default?</th>
     </tr>
 
   <% @characters.each do |character| %>
@@ -12,6 +13,7 @@
       <td><%= character.name %><%= hidden_field_tag "name[]", character.name %></td>
       <td><%= character.character_id %><%= hidden_field_tag "character_id[]", character.character_id %></td>
       <td><%= check_box_tag "import[]" %></td>
+      <td><%= radio_button_tag "default", character.character_id %></td>
     </tr>
   <% end %>
   </table>
