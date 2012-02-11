@@ -1,5 +1,5 @@
 <h1>Listing characters</h1>
-<%= form_tag bulk_create_user_characters_path(@user) do %>
+<%= form_tag bulk_create_user_characters_path(current_user) do %>
   <table>
     <tr>
       <th>Name</th>

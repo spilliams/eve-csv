@@ -1,17 +1,7 @@
 class CharactersController < ApplicationController
-  before_filter do
-    # ASK can we look at other players' character lists?
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-    # ASK can we look at all characters or just our own?
-    elsif current_user
-      @user = current_user
-    end
-  end
-  
   # GET /users/1/characters/import
   def import
-    @characters = @user.api.account.characters.characters
+    @characters = current_user.api.account.characters.characters
   end
   
   # POST /users/1/characters
@@ -43,9 +33,8 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    if @user
-      @characters = @user.characters
-    # ASK can we look at all characters or just our own?
+    if params[:user_id]
+      @characters = User.find(params[:user_id]).characters
     else
       @characters = Character.all
     end

@@ -1,7 +1,10 @@
 Eve::Application.routes.draw do
   
-  get '/users/:user_id/characters/import' => 'characters#import', as: :import_characters
-  devise_for :users
+  get '/characters/import' => 'characters#import', as: :import_characters
+  devise_for :users,
+             :controllers => {
+               :registrations => 'custom_devise/registrations'
+             }
   resources :characters, :only => [:index, :show]
   resources :users do
     resources :characters, :except => [:new, :edit, :create, :update] do
