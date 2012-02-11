@@ -1,23 +1,13 @@
-<?php include "functions.php";
+<?php
 # take parameters, match with characters.txt
 # any characters in parameters not in file get added to file
-
-if (!isset($_GET['key'])) {
-  echo "missing key\n";
-  exit();
-}
-$key = $_GET['key'];
-require_once "key.php";
-if ($key != $correctKey) {
-  echo "incorrect key\n";
-  exit();
-}
 
 # load charsIn
 echo "loading characters.txt...";
 $charsIn = explode("\n",file_get_contents("characters.txt"));
 for($i=0;$i<count($charsIn)-1;$i++){
-  $charsIn[$i]=explode(",",decrypt($charsIn[$i],$key));
+  if (count($charsIn[$i]))
+  $charsIn[$i]=explode(",",$charsIn[$i]);
 }
 echo "done\n";
 
@@ -48,7 +38,7 @@ for($i=0;$i<count($rows->row)-1;$i++) {
   }
   if (!$found) {
     echo "not found. adding\n";
-    fwrite(fopen("characters.txt",'a'),encrypt($name.",".$userID.",".$apiKey.",".$characterID,$key)."\n");
+    fwrite(fopen("characters.txt",'a'),$name.",".$userID.",".$apiKey.",".$characterID."\n");
     echo "added ".$name."\n";
     $changed = true;
   } else {
