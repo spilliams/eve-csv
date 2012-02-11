@@ -16,7 +16,7 @@ if ($key != $correctKey) {
 # load charsIn
 echo "loading characters.txt...";
 $charsIn = explode("\n",file_get_contents("characters.txt"));
-for($i=1;$i<count($charsIn)-1;$i++){
+for($i=0;$i<count($charsIn)-1;$i++){
   $charsIn[$i]=explode(",",decrypt($charsIn[$i],$key));
 }
 echo "done\n";
