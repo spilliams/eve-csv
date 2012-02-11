@@ -1,27 +1,48 @@
-Not sure yet the direction I want to take this app. But it'll be EVE-related, and use [sinisterchipmunk/eve](https://github.com/sinisterchipmunk/eve)
-
-Pardon the stream-of-consciousness here, but I need to figure out what this thing is.
-
 #What does this do right now?
 
-Absolutely nothing. Unless you count outputting "it works!" as something. Install with `bundle install` and run with `bundle exec rackup`. You may have to `kill -9` any running ruby processes (`lsof | grep ruby | grep IPv4` to get the pid)
+Almost nothing. You can
 
+- create an account with an email address and password
+- add account details like your name and API information
+- import characters
 
-#Why do we need an app?
+#What is the purpose of this app?
 
-Well, there are some things about running this corporation that could use an automated computation system like a computer. Some questions that we like to ask and don't like to wait for an answer about. For instance:
+To provide to in-game players resources that are not attainable by hand, with in-game menus or by third-party software.
+To provide to out-of-game players a Corp portal.
 
-- what is the most profitable way to mine right now? where should I go? what should I fit? what should I pay my hauler?
-- how much ammunition do I use in a normal play session? how expensive would it be to manufacture that ammunition versus buying it on the market?
-- how does running level 4 security missions stack up against solomining?
+Essentially this is going to be a question-answering machine. Players in-game aren't going to want to read a lot or sift through a lot of data, they want to spend time playing. IE we *want* a high bounce rate.
 
-I'm sure there are more questions, but these are enough to start thinking about a framework with which to start constructing an answering machine.
+#V1
 
-So for now this branch of this repository is going to contain a bunch of code that will someday replace the code in the master branch. That's right, we're refactoring that frameworkless php into an application (better now than after it gets to be 100 files big).
-If anyone has database or environment preferences, I'm all ears. For now though I'll probably go with MySQL since I already have a host with it ready to go.
+This app will reach version 1.0 when
+
+- it can successfully reproduce all functionality of the CSV generator in the master branch
+- it can utilize the CSVs it generates in its own views
+
+To that end, at v1.0 this app should be able to tell you things like
+
+- When I solomine, what should I fit? How big of a cut should I give a hauler?
+- Who should I give my ore to in the corp to refine and how much of a cut should they get?
+- What does the current market look like for ore and minerals? Should I refine X ore?
+
+#V2
+
+It's really up in the air.
+I want to stay away from features like Forums, Message Boards etc. That said, it might be nice to have a place to schedule corp events (there is an in-game calendar though).
+
+Features definitely in v2.0
+
+- who is online? where are they? who wants to run a mission?
+- who is that guy and why is he in my corp?
+- Responsive design:
+  - 700w or bigger: for those who want to see everything the app has to offer
+  - 200w or smaller: for those who just want the player listing
+  - 200w-700w: uhhh, we'll have to think of something for this
+  - mobile: ???
 
 #Questions this app will not make it its business to answer
-(ie: If it ends up answering these questions that is purely a stepping-stone to a larger answer not included in this list)
+(ie: If it ends up answering these questions that is purely a stepping-stone to a larger question not included in this list)
 
 - How long will it take me to train for X skill/certificate/ship?
 - How many of X can I fit on Y ship?
