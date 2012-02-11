@@ -7,9 +7,6 @@
     <th>Last name</th>
     <th>API ID</th>
     <th>API Key</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @users.each do |user| %>
@@ -19,13 +16,6 @@
     <td><%= user.last_name %></td>
     <td><%= user.api_id %></td>
     <td><%= user.api_key %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>

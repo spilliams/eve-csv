@@ -7,12 +7,16 @@ class CharactersController < ApplicationController
   # POST /users/1/characters
   # POST /users/1/characters.json
   def bulk_create
+    current_user.characters.destroy_all
+    current_user.character_id = nil
+    current_user.save
+    
     characters = []
     ok = true
     Character.transaction do
       i=0
       params[:name].each do |name|
-        if params[:import][i]
+        if params[:import] and params[:import][i]
           c = Character.new(:user => current_user)
           c.name = params[:name][i]
           c.character_id = params[:character_id][i]
@@ -23,14 +27,21 @@ class CharactersController < ApplicationController
       end
     end
     
-    default = Character.where(:character_id => params[:default]).first
-    default = characters.first unless default # user didn't select a default
-    current_user.character_id = default.id
-    current_user.save
+    unless characters.empty?
+      default = Character.where(:character_id => params[:default]).first
+      default = characters.first unless default # user didn't select a default
+      current_user.character_id = default.id
+      current_user.save
+    end
     
     if ok
       respond_to do |format|
-        format.html { redirect_to user_characters_path, notice: 'Characters successfully imported.' }
+        if characters.empty?
+          notice = "No characters imported."
+        else
+          notice = 'Characters successfully imported.'
+        end
+        format.html { redirect_to user_characters_path, notice: notice }
       end
     else
       redirect_to user_characters_path(current_user), :alert => "There was an error importing some or all of the characters."

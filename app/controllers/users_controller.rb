@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   # POST /users
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html {
           if @user.characters.empty?
-            redirect_to import_characters_path(@user), notice: 'User was successfully updated.'
+            redirect_to import_characters_path, notice: 'User was successfully updated.'
           else
             redirect_to @user, notice: 'User was successfully updated.'
           end

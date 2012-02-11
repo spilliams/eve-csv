@@ -19,7 +19,8 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
-  <em>Your EVE User ID and API Key can be found <%= link_to "here", "http://community.eveonline.com/api/default.asp", :target => "_blank" %>.</em><br>
+  <em>Your EVE User ID and API Key can be found <%= link_to "here", "http://community.eveonline.com/api/default.asp", :target => "_blank" %>.<br>
+  You need to provide us with either a Limited Access Key or a Full Access Key (<strong>not</strong> a Customizable Key).</em><br>
   <div class="field">
     <%= f.label "EVE User ID" %><br />
     <%= f.text_field :api_id %>
@@ -28,7 +29,7 @@
     <%= f.label "EVE API Key" %><br />
     <%= f.text_field :api_key %>
   </div>
-  <% if @user.characters %>
+  <% unless @user.characters.empty? %>
   <div class="field">
     <%= f.label "Default character" %><br>
     <%= f.select :character_id, @user.characters.collect {|c| [c.name, c.id]} %>
