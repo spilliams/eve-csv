@@ -17,4 +17,8 @@ class Character < ActiveRecord::Base
     size = 512 if size > 512
     "http://image.eveonline.com/Character/#{character_id}_#{size}.jpg"
   end
+  
+  def api
+    user.api
+  end
 end
