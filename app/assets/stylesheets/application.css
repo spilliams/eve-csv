@@ -5,3 +5,23 @@
  *= require_self
  *= require_tree . 
 */
+
+/* GOOD IDEAS */
+
+/* LAYOUT */
+#nav, #who {
+  position: fixed;
+  width: 150px;
+  top: 0;
+  bottom: 0;
+  background: #dddddd;
+}
+#nav {
+  left: 0;
+}
+#main {
+  margin: 0 150px;
+}
+#who {
+  right: 0;
+}

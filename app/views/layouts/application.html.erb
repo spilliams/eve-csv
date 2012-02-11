@@ -8,8 +8,11 @@
 </head>
 <body>
   <%= render "shared/nav" %>
-  <p id='notice'><%= notice %></p>
-  <%= yield %>
+  <div id='main'>
+    <p id='notice'><%= notice %></p>
+    <%= yield %>
+  </div>
+  <%= render "shared/who" %>
 
 </body>
 </html>

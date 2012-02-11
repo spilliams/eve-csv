@@ -1,7 +1,8 @@
-<nav>
+<div id='nav'>
   <% if current_user %>
     Welcome, <%= current_user.first_name or current_user.email %>!
   <% end %>
+  <em>Account</em>
   <ul>
     <% if current_user %>
       <li><%= link_to "Manage Characters", user_characters_path(current_user) %></li>
@@ -13,4 +14,9 @@
       <li><%= link_to "Log In", new_user_session_path %></li>
     <% end %>
   </ul>
-</nav>
+  <em>Server</em>
+  <ul>
+    <li><%= @api.server_status.server_open ? "Available" : "Unavailable" %></li>
+    <li><%= @api.server_status.online_players %> Online</li>
+  </ul>
+</div>
