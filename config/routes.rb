@@ -1,7 +1,13 @@
 Eve::Application.routes.draw do
+  
+  get '/users/:user_id/characters/import' => 'characters#import', as: :import_characters
   devise_for :users
-
-  resources :users
+  resources :characters, :only => [:index, :show]
+  resources :users do
+    resources :characters, :except => [:new, :edit, :create, :update] do
+      post :bulk_create, :on => :collection
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

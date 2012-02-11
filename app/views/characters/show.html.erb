@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @character.name %>
+</p>
+
+<p>
+  <b>Character ID:</b>
+  <%= @character.character_id %>
+</p>
+
+<%= link_to "#{@character.user}'s characters", user_characters_path(@character.user) %> |
+<%= link_to "All characters", characters_path %>

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211053111) do
+ActiveRecord::Schema.define(:version => 20120211070045) do
+
+  create_table "characters", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "character_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -30,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120211053111) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "default_character"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

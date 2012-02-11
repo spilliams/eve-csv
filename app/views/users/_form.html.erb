@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
   </div>
@@ -23,12 +19,13 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
+  <em>Your EVE User ID and API Key can be found <%= link_to "here", "http://community.eveonline.com/api/default.asp", :target => "_blank" %>.</em><br>
   <div class="field">
-    <%= f.label :api_id %><br />
+    <%= f.label "EVE User ID" %><br />
     <%= f.text_field :api_id %>
   </div>
   <div class="field">
-    <%= f.label :api_key %><br />
+    <%= f.label "EVE API Key" %><br />
     <%= f.text_field :api_key %>
   </div>
   <div class="actions">
