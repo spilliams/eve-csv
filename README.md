@@ -1,10 +1,14 @@
 #What does this do right now?
 
-Almost nothing. You can
+From the web:
 
 - create an account with an email address and password
 - add account details like your name and API information
 - import characters
+
+From the console:
+
+- rake tasks to generate CSVs of all characters' skills and all characters' standings
 
 #What is the purpose of this app?
 
@@ -17,7 +21,7 @@ Essentially this is going to be a question-answering machine. Players in-game ar
 
 This app will reach version 1.0 when
 
-- it can successfully reproduce all functionality of the CSV generator in the master branch
+- DONE! it can successfully reproduce all functionality of the CSV generator in the master branch
 - it can utilize the CSVs it generates in its own views
 
 To that end, at v1.0 this app should be able to tell you things like
