@@ -1,0 +1,9 @@
+<div id='who'><ul>
+  <% User.order(:current_sign_in_at).each do |user|
+    # TODO we need some way for users to select the character they're playing as for a session
+    # for now just use the default
+    if user.current_character
+    %>
+    <li><%= render "characters/as_list_item", :character => user.current_character %></li>
+  <% end end %>
+</ul></div>

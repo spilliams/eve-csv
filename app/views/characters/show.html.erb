@@ -1,0 +1,14 @@
+<p>
+  <b>Character owned by:</b><br>
+  <%= link_to @character.user, @character.user %>
+<p>
+  <b>Portrait:</b><br>
+  <%= image_tag @character.portrait_url 128 %>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @character.name %>
+</p>
+
+<%= link_to "#{@character.user}'s characters", user_characters_path(@character.user) %> |
+<%= link_to "All characters", characters_path %>

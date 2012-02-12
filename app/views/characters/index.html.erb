@@ -1,0 +1,22 @@
+<h1>Listing characters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th></th>
+  </tr>
+
+<% @characters.each do |character| %>
+  <tr>
+    <td><%= character.name %></td>
+    <td><%= character.character_id %></td>
+    <td><%= link_to 'Show', character %></td>
+  </tr>
+<% end %>
+</table>
+
+<% if current_user.id.to_s == params[:user_id] %>
+<br />
+<%= link_to 'Import Characters', import_characters_path %>
+<% end %>

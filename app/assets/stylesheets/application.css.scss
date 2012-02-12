@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+/* GOOD IDEAS */
+
+/* LAYOUT */
+#nav, #who {
+  position: fixed;
+  width: 150px;
+  top: 0;
+  bottom: 0;
+  background: #dddddd;
+}
+#nav {
+  left: 0;
+}
+#main {
+  margin: 0 150px;
+}
+#who {
+  right: 0;
+  li {
+    position:relative;
+    height:64px;
+    img {
+      position:absolute;
+      top:0;
+      left:0;
+    }
+    .text {
+      position:absolute;
+      top:0;
+      left:64px;
+      .line {
+        overflow:scroll;
+        white-space: nowrap;
+        line-height:21px;
+      }
+    }
+  }
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
