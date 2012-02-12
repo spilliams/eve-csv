@@ -2,7 +2,10 @@
   <% if current_user %>
     Welcome, <%= current_user.first_name or current_user.email %>!
   <% end %>
-  <em>Account</em>
+  <ul>
+    <li><%= link_to "Dashboard", dashboard_index_path %>
+  </ul>
+  <em><strong>Account</strong></em>
   <ul>
     <% if current_user %>
       <li><%= link_to "Manage Characters", user_characters_path(current_user) %></li>
@@ -14,9 +17,10 @@
       <li><%= link_to "Log In", new_user_session_path %></li>
     <% end %>
   </ul>
-  <em>Server</em>
+  <em><strong>Server</strong></em>
   <ul>
     <li><%= @api.server_status.server_open ? "Available" : "Unavailable" %></li>
+    <li>Time: <%= @api.server_status.current_time.strftime("%k%M") %>
     <li><%= @api.server_status.online_players %> Online</li>
   </ul>
 </div>

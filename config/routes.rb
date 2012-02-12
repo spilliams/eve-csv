@@ -3,7 +3,8 @@ Eve::Application.routes.draw do
   get '/characters/import' => 'characters#import', as: :import_characters
   devise_for :users,
              :controllers => {
-               :registrations => 'custom_devise/registrations'
+               :registrations => 'custom_devise/registrations',
+               :sessions => 'custom_devise/sessions'
              }
   resources :characters, :only => [:index, :show]
   resources :users do
@@ -59,5 +60,7 @@ Eve::Application.routes.draw do
   #     resources :products
   #   end
   
-  root :to => 'dashboard#index'
+  get 'dashboard/index'
+  
+  root :to => 'dashboard#root'
 end

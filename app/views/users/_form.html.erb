@@ -32,9 +32,19 @@
   <% unless @user.characters.empty? %>
   <div class="field">
     <%= f.label "Default character" %><br>
-    <%= f.select :character_id, @user.characters.collect {|c| [c.name, c.id]} %>
+    <%= f.select :default_character_id, @user.characters.collect {|c| [c.name, c.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label "Current character" %><br>
+    <%= f.select :current_character_id, @user.characters.collect {|c| [c.name, c.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+      <em>ex: Sec4 Missions, Mining, AFK, etc</em><br>
+    <%= f.text_field :status %>
   </div>
   <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

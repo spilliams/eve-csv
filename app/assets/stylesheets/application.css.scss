@@ -24,4 +24,27 @@
 }
 #who {
   right: 0;
+  li {
+    position:relative;
+    img {
+      position:absolute;
+      top:0;
+      left:0;
+    }
+    .text {
+      position:absolute;
+      top:0;
+      left:64px;
+      .line {
+        overflow:scroll;
+        white-space: nowrap;
+        line-height:21px;
+      }
+    }
+  }
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

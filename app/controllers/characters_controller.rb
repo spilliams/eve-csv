@@ -8,7 +8,7 @@ class CharactersController < ApplicationController
   # POST /users/1/characters.json
   def bulk_create
     current_user.characters.destroy_all
-    current_user.character_id = nil
+    current_user.default_character_id = nil
     current_user.save
     
     characters = []
@@ -30,7 +30,7 @@ class CharactersController < ApplicationController
     unless characters.empty?
       default = Character.where(:character_id => params[:default]).first
       default = characters.first unless default # user didn't select a default
-      current_user.character_id = default.id
+      current_user.default_character_id = default.id
       current_user.save
     end
     

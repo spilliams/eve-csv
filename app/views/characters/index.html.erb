@@ -5,7 +5,6 @@
     <th>Name</th>
     <th>ID</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @characters.each do |character| %>
@@ -13,11 +12,11 @@
     <td><%= character.name %></td>
     <td><%= character.character_id %></td>
     <td><%= link_to 'Show', character %></td>
-    <td><%= link_to 'Destroy', character, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
+<% if current_user.id.to_s == params[:user_id] %>
 <br />
-
 <%= link_to 'Import Characters', import_characters_path %>
+<% end %>

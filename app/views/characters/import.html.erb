@@ -13,7 +13,7 @@
       <td><%= character.name %><%= hidden_field_tag "name[]", character.name %></td>
       <td><%= character.character_id %><%= hidden_field_tag "character_id[]", character.character_id %></td>
       <td><%= check_box_tag "import[]", "true", (current_user.characters.map{|c| c.character_id}.include? character.character_id ? :checked : "") %></td>
-      <td><%= radio_button_tag "default", character.character_id, (current_user.character and current_user.character.character_id == character.character_id ? :selected : "") %></td>
+      <td><%= radio_button_tag "default", character.character_id, (current_user.default_character and current_user.default_character.character_id == character.character_id ? :selected : "") %></td>
     </tr>
   <% end %>
   </table>

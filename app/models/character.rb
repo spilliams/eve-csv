@@ -12,7 +12,7 @@ class Character < ActiveRecord::Base
     name
   end
   
-  def portrait_url(size)
+  def portrait_url(size=nil)
     size = 64 if size.nil? or size.blank? or size < 64
     size = 512 if size > 512
     "http://image.eveonline.com/Character/#{character_id}_#{size}.jpg"
