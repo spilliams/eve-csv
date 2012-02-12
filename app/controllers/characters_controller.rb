@@ -13,18 +13,12 @@ class CharactersController < ApplicationController
     
     characters = []
     ok = true
-    Character.transaction do
-      i=0
-      params[:name].each do |name|
-        if params[:import] and params[:import][i]
-          c = Character.new(:user => current_user)
-          c.name = params[:name][i]
-          c.character_id = params[:character_id][i]
-          ok = false unless c.save
-          characters << c
-        end
-        i=i+1
-      end
+    params[:import].each do |character_id|
+      c = Character.new(:user => current_user)
+      c.name = params[:name][character_id]
+      c.character_id = character_id
+      ok = false unless c.save
+      characters << c
     end
     
     unless characters.empty?
