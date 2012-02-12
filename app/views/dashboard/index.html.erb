@@ -1,1 +1,11 @@
+<% if current_user.current_character %>
 You are currently playing the character <%= current_user.current_character %> [<%= link_to "Change", edit_user_path(current_user) %>].
+<% elsif current_user.characters.empty? %>
+<%= link_to "Import characters", import_characters_path %>
+<% else %>
+You are not listed as playing a character [<%= link_to "Change", edit_user_path(current_user) %>].
+<% end %><br>
+
+<% if !current_user.api_id or !current_user.api_key %>
+<%= link_to "Update your API information!", edit_user_path(current_user) %><br>
+<% end %>
