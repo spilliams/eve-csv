@@ -1,11 +1,27 @@
-<% if current_user.current_character %>
-You are currently playing the character <%= current_user.current_character %> [<%= link_to "Change", edit_user_path(current_user) %>].
-<% elsif current_user.characters.empty? %>
-<%= link_to "Import characters", import_characters_path %>
-<% else %>
-You are not listed as playing a character [<%= link_to "Change", edit_user_path(current_user) %>].
-<% end %><br>
+<div id='tab-window'>
+	<div id='tab-nav'>
+		<ul>
+			<li><a id='dashboard-link' href='javascript:void(0)' class='tab-nav-link'>Dashboard</a></li>
+			<li><a id='minerals-link' href='javascript:void(0)' class='tab-nav-link'>Ore &amp; Minerals</a></li>
+		</ul>
+	</div>
+	<div id='tab-container'>
+		<div id='tab-dashboard' class='tab tab-active'>
+			<div class='header'>Dashboard</div>
+			<div class='tab-content'>
+				<% if current_user.current_character %>
+					You are currently playing the character <%= current_user.current_character %> [<%= link_to "Change", edit_user_path(current_user) %>].
+				<% elsif current_user.characters.empty? %>
+					<%= link_to "Import characters", import_characters_path %>
+				<% else %>
+					You are not listed as playing a character [<%= link_to "Change", edit_user_path(current_user) %>].
+				<% end %><br>
 
-<% if !current_user.api_id or !current_user.api_key %>
-<%= link_to "Update your API information!", edit_user_path(current_user) %><br>
-<% end %>
+				<% if !current_user.api_id or !current_user.api_key %>
+					<%= link_to "Update your API information!", edit_user_path(current_user) %><br>
+				<% end %>
+			</div><!-- .tab-content -->
+		</div><!-- #tab-dashboard.tab -->
+		<%= render 'dashboard/minerals' %>
+	</div><!-- #tab-container -->
+</div><!-- #tab-window -->
