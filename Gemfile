@@ -6,6 +6,8 @@ gem 'devise'
 
 gem 'eve', :git => "git://github.com/sinisterchipmunk/eve.git"
 
+gem 'nokogiri'
+
 gem 'sqlite3'
 
 
