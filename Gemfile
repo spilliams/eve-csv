@@ -6,7 +6,7 @@ gem 'devise'
 
 gem 'eve', :git => "git://github.com/sinisterchipmunk/eve.git"
 
-gem 'sqlite3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
